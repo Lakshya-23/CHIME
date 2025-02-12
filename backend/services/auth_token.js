@@ -12,7 +12,8 @@ function createToken(id,email,res){
     res.cookie('uid',token,{
         maxAge:7*24*60*60*1000,
         httpOnly:true,          //prevent XSS cross site scripting attacks
-        sameSite:'strict',      //CSRF attacks cross-site request forgery attack
+        sameSite:'none',      //CSRF attacks cross-site request forgery attack
+        secure:true,
     })
 
     return token
