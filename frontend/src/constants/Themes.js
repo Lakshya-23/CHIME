@@ -1,0 +1,22 @@
+
+export const THEMES=[
+      "dark",
+      "synthwave",
+      "retro",
+      "valentine",
+      "halloween",
+      "forest",
+      "aqua",
+      "lofi",
+      "pastel",
+      "wireframe",
+      "black",
+      "luxury",
+      "dracula",
+      "business",
+      "night",
+      "coffee",
+      "winter",
+      "dim",
+      "nord",
+]
