@@ -15,6 +15,7 @@ app.use(express.json({ limit: '9.5mb' }));      // increases the limit of file u
 app.use(cookieParser());
 app.use(cors({
     origin:process.env.FRONTEND_URL,
+    methods: ["GET", "POST","OPTIONS"],
     credentials:true,
 }))
 app.get('/',(req,res)=>{
