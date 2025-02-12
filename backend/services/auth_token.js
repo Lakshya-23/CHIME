@@ -13,7 +13,7 @@ function createToken(id,email,res){
         maxAge:7*24*60*60*1000,
         httpOnly:true,          //prevent XSS cross site scripting attacks
         sameSite:'none',      //CSRF attacks cross-site request forgery attack
-        secure:true,
+        secure:process.env.NODE_ENV==='production'?true:false,
     })
 
     return token
