@@ -23,7 +23,6 @@ function getReceiverSocketid(userId){
 }
 
 io.on('connection',(socket)=>{
-    console.log("A user has connected",socket.id);
 
     const userId = socket.handshake.query.userId            //we pass userid:authuser._id from frontend 
 

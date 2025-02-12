@@ -12,11 +12,8 @@ function CheckforAuth(cookie){
         try {
             const payload = validateToken(token);
             const user = await User.findById(payload._id).select('-password');
-            if(user)
-                req.user = user;
-            else
-                return res.json({mssg:"No user Found"});
-            console.log(user);
+            req.user = user;
+
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' })
         }

@@ -95,7 +95,6 @@ async function UpdateProfile(req,res){
         }
 
         const uploadRes= await cloudinary.uploader.upload(profileImg);
-        console.log(uploadRes);
         const updatedUser = await User.findByIdAndUpdate(userID,{profileImg:uploadRes.secure_url},{new:true});
         // console.log(updatedUser);
         return res.status(200).json(updatedUser)
