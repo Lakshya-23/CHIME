@@ -7,7 +7,7 @@ const server = http.createServer(app);
 
 const io = new Server(server,{
     cors:{
-        origin: "https://chime-xi.vercel.app",
+        origin: process.env.FRONTEND_URL,
         methods: ["GET", "POST"],
         credentials: true
     },
@@ -24,7 +24,7 @@ function getReceiverSocketid(userId){
 
 io.on('connection',(socket)=>{
 
-    const userId = socket.handshake.query.userId            //we pass userid:authuser._id from frontend 
+    const userId =  socket.handshake.query.userId            //we pass userid:authuser._id from frontend 
 
     if(userId) userSocketMap[userId]=socket.id;            //this means a user has come online and is stored in usermap
     //sends events to all clients 
