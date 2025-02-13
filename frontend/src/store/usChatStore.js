@@ -52,7 +52,7 @@ export const useChatStore= create((set,get)=>({
         const {userselected} = get();
         if(!userselected) return;
         
-        const socket = useAuthStore.getState().socket; 
+        const socket =  useAuthStore.getState().socket; 
 
         socket.on('new_message',(newMessage)=>{
             if(newMessage.senderID!==userselected._id) return;      //prevents one mssg from another user to go to other user 
@@ -60,7 +60,7 @@ export const useChatStore= create((set,get)=>({
         })
     },
     disableupdateMessages:()=>{
-        const socket = useAuthStore.getState().socket; 
+        const socket =  useAuthStore.getState().socket; 
         socket.off('new_message');
     },
     setuserselected:((user)=>(set({userselected:user})))
