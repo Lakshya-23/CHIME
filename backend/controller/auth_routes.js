@@ -55,8 +55,8 @@ async function signin(req,res){
             }else if(!email||!password) return res.status(400).json({ mssg: "All fields required" })
 
             const user = await User.findOne({email});
-            if(!user) return res.status(400).json({ mssg: "Invalid Credentials" })
 
+            if(!user) return res.status(400).json({ mssg: "Invalid Credentials" })
             const isMatch = await bcrypt.compare(password, user.password)
 
             if(isMatch){

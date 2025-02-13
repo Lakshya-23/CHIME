@@ -4,3 +4,4 @@ export const axiosInstance = axios.create({             //export const === modul
     baseURL: import.meta.env.VITE_BACKEND_URL+"/api",
     withCredentials:true,                               //allows backend cookies to come to frontend(cross-origin) because both are running on different Localhost
 })
+

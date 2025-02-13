@@ -18,9 +18,9 @@ export const useAuthStore = create((set,get)=>({
     checkAuth:async ()=>{
         try {
             const res = await axiosInstance.get('/auth/check');
-
+            
             set({authUser:res.data})               
-            await get().connectSocket();
+            get().connectSocket();
         } catch (error) {
             console.log("error in useAuthStore",error);
             set({authUser:null});
@@ -48,7 +48,7 @@ export const useAuthStore = create((set,get)=>({
             await axiosInstance.post('/auth/logout');
             set({authUser:null});
             toast.success('Logout Successful')
-            await get().disconnectSocket();
+             get().disconnectSocket();
         } catch (error) {
             console.log(error);
         }
@@ -81,23 +81,22 @@ export const useAuthStore = create((set,get)=>({
             set({isUpdatingProfile:false});
         }
     },
-    connectSocket:async()=>{
+    connectSocket:()=>{
         const {authUser}  = get();
-        if(!authUser||await get().socket?.connected) return;
-
-        const socket =  io(BASE_URL,{
+        if(!authUser||get().socket?.connected) return;
+        const socket = io(BASE_URL,{
             query:{userId:authUser._id},              //we pass this online user id to backend to be stored and later update on frontend
         });
-         socket.connect();
+        socket.connect();
         set({socket:socket});
 
-        await socket.on('getOnlineusers',(userIds)=>{     //listens to getOnlineusers(on backend) and appends to userIds
+        socket.on('getOnlineusers',(userIds)=>{     //listens to getOnlineusers(on backend) and appends to userIds
             set({onlineUsers:userIds});
-            console.log("This is userid",userIds);
+            
         })
     },
-    disconnectSocket:async()=>{
-        if(await get().socket?.connected) await get().socket?.disconnect();
+    disconnectSocket:()=>{
+        if( get().socket?.connected) get().socket?.disconnect();
         // set({socket:null})       //makes a fresh connection evertime
     },
 

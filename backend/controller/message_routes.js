@@ -7,7 +7,6 @@ const { getReceiverSocketid, io } = require("../services/socket");
 async function getallUsers(req,res){
     try {
         const  loggedUserId = req.user._id;
-        if(!loggedUserId) return res.json({mssg:"No id"});
         const filteredUsers =await User.find({_id:{$ne:loggedUserId}}).select('-password');
         return res.status(200).json(filteredUsers);
     } catch (error) {
