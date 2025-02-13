@@ -14,10 +14,11 @@ const PORT = process.env.PORT
 app.use(express.json({ limit: '9.5mb' }));      // increases the limit of file upload size from 100kb 
 app.use(cookieParser());
 app.use(cors({
-    origin:process.env.FRONTEND_URL,
-    methods: ["GET", "POST","OPTIONS"],
-    allowedHeaders:['Content-Type',"Authorization"],
-    credentials:true,
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    exposedHeaders: ['set-cookie']
 }))
 app.get('/',(req,res)=>{
     return res.send('this is home page')

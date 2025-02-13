@@ -13,7 +13,7 @@ function createToken(id,email,res){
         maxAge:7*24*60*60*1000,
         httpOnly:true,          //prevent XSS cross site scripting attacks
         sameSite:process.env.NODE_ENV === "production" ? "None" : "Lax",      //CSRF attacks cross-site request forgery attack
-        secure:process.env.NODE_ENV==='production'?true:false,
+        secure: process.env.NODE_ENV === 'production',
     })
     //sameSite: "None" requires secure: true, which doesn't work on http://localhost (it only works over HTTPS).
 
