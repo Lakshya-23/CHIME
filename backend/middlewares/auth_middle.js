@@ -5,6 +5,7 @@ const User = require('../models/users')
 function CheckforAuth(cookie){
     return async (req,res,next)=>{
         const token = req.cookies[cookie];
+        console.log(token);
         if(!token){
             return res.status(401).json({ error: 'Not authorized -No token' })
         }
