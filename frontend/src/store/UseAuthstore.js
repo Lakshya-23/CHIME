@@ -57,13 +57,19 @@ export const useAuthStore = create((set,get)=>({
     signin:async(data)=>{
         try {
             set({isSigningIn:true})
+            console.log('Sending signin request with:', data);
             const res = await axiosInstance.post('/auth/signin',data);
+            console.log('Signin response:', response.data);
             set({authUser:res.data})
             toast.success('Successfully SignedIn')
             await get().connectSocket();
         } catch (error) {
-            toast.error(error.response.data.mssg)
-            console.log("error in signin",error);
+            console.error('Signin error:', error); // Detailed error logging
+        
+        const errorMessage = error.response?.data?.mssg 
+            || error.message 
+            || 'An error occurred during sign in';
+            console.log("error in signin",errorMessage);
         }finally{
             set({isSigningIn:false})
         }

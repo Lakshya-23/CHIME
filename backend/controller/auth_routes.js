@@ -48,6 +48,7 @@ async function signup(req, res) {
         }
 }
 async function signin(req,res){
+    console.log('Signin request received:', req.body);
     const {password,email} = req.body;
          try {
             if (password.length < 6){
@@ -60,7 +61,7 @@ async function signin(req,res){
             const isMatch = await bcrypt.compare(password, user.password)
 
             if(isMatch){
-                createToken(user._id,email,res);
+                await createToken(user._id,email,res);
                 return res.status(200).json({
                     email:user.email,
                     fullname:user.fullname,
