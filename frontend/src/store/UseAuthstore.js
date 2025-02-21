@@ -60,7 +60,7 @@ export const useAuthStore = create((set,get)=>({
             console.log('Sending signin request with:', data);
             const res = await axiosInstance.post('/auth/signin',data);
             set({authUser:res.data})
-            toast.success('Successfully SignedIn')
+            toast.success('Successfully Signed In')
             await get().connectSocket();
         } catch (error) {
             console.error('Signin error:', error); // Detailed error logging

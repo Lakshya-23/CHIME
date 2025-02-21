@@ -48,7 +48,7 @@ async function signup(req, res) {
         }
 }
 async function signin(req,res){
-    console.log('Signin request received:', req.body);
+    console.log('Signin request received');
     const {password,email} = req.body;
          try {
             if (password.length < 6){
