@@ -64,11 +64,6 @@ export const useAuthStore = create((set,get)=>({
             await get().connectSocket();
         } catch (error) {
             console.error('Signin error:', error); // Detailed error logging
-        
-        const errorMessage = error.response?.data?.mssg 
-            || error.message 
-            || 'An error occurred during sign in';
-            console.log("error in signin",errorMessage);
         }finally{
             set({isSigningIn:false})
         }
