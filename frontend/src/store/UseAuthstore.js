@@ -64,6 +64,7 @@ export const useAuthStore = create((set,get)=>({
             await get().connectSocket();
         } catch (error) {
             console.error('Signin error:', error); // Detailed error logging
+            toast.error(error.response?.data?.mssg);
         }finally{
             set({isSigningIn:false})
         }
